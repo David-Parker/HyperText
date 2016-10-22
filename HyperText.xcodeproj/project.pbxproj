@@ -23,6 +23,7 @@
 		3BACCB511DBAD58A00CDBBFB /* BooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB501DBAD58A00CDBBFB /* BooksCollectionViewCell.swift */; };
 		3BACCB531DBAEB8E00CDBBFB /* BookReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB521DBAEB8E00CDBBFB /* BookReaderViewController.swift */; };
 		3BACCB551DBAF98200CDBBFB /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB541DBAF98200CDBBFB /* RegistrationViewController.swift */; };
+		A11788001DBC2C3F00CD78B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11787FF1DBC2C3F00CD78B2 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,9 @@
 		3BACCB501DBAD58A00CDBBFB /* BooksCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BACCB521DBAEB8E00CDBBFB /* BookReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookReaderViewController.swift; sourceTree = "<group>"; };
 		3BACCB541DBAF98200CDBBFB /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		A11787FF1DBC2C3F00CD78B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C1AAB08D2F62B9161E12BD3F /* Pods-HyperText.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HyperText.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HyperText/Pods-HyperText.debug.xcconfig"; sourceTree = "<group>"; };
+		C27D334E5A00D303E1C0EB9C /* Pods-HyperText.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HyperText.release.xcconfig"; path = "Pods/Target Support Files/Pods-HyperText/Pods-HyperText.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +61,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2856A46706D8014631DEF177 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C1AAB08D2F62B9161E12BD3F /* Pods-HyperText.debug.xcconfig */,
+				C27D334E5A00D303E1C0EB9C /* Pods-HyperText.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3636A53A089BB7E83E23F0CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3BACCB191DBA834900CDBBFB = {
 			isa = PBXGroup;
 			children = (
 				3BACCB241DBA834900CDBBFB /* HyperText */,
 				3BACCB231DBA834900CDBBFB /* Products */,
+				2856A46706D8014631DEF177 /* Pods */,
+				3636A53A089BB7E83E23F0CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +98,7 @@
 		3BACCB241DBA834900CDBBFB /* HyperText */ = {
 			isa = PBXGroup;
 			children = (
+				A11787FF1DBC2C3F00CD78B2 /* GoogleService-Info.plist */,
 				3BACCB251DBA834900CDBBFB /* AppDelegate.swift */,
 				3BACCB271DBA834900CDBBFB /* ViewController.swift */,
 				3BACCB291DBA834900CDBBFB /* Main.storyboard */,
@@ -104,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BACCB371DBA834900CDBBFB /* Build configuration list for PBXNativeTarget "HyperText" */;
 			buildPhases = (
+				B58CBEC91ED6E2E3A5D3897A /* [CP] Check Pods Manifest.lock */,
 				3BACCB1E1DBA834900CDBBFB /* Sources */,
 				3BACCB1F1DBA834900CDBBFB /* Frameworks */,
 				3BACCB201DBA834900CDBBFB /* Resources */,
+				99811C5FD96A35D6EF45E4BE /* [CP] Embed Pods Frameworks */,
+				5C7B05E31B6C236AA7BCFC0E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,10 +184,59 @@
 				3BACCB331DBA834900CDBBFB /* LaunchScreen.storyboard in Resources */,
 				3BACCB301DBA834900CDBBFB /* Assets.xcassets in Resources */,
 				3BACCB2B1DBA834900CDBBFB /* Main.storyboard in Resources */,
+				A11788001DBC2C3F00CD78B2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C7B05E31B6C236AA7BCFC0E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HyperText/Pods-HyperText-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99811C5FD96A35D6EF45E4BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HyperText/Pods-HyperText-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B58CBEC91ED6E2E3A5D3897A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3BACCB1E1DBA834900CDBBFB /* Sources */ = {
@@ -291,6 +366,7 @@
 		};
 		3BACCB381DBA834900CDBBFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1AAB08D2F62B9161E12BD3F /* Pods-HyperText.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HyperText/Info.plist;
@@ -302,6 +378,7 @@
 		};
 		3BACCB391DBA834900CDBBFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C27D334E5A00D303E1C0EB9C /* Pods-HyperText.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HyperText/Info.plist;
@@ -330,6 +407,7 @@
 				3BACCB391DBA834900CDBBFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
