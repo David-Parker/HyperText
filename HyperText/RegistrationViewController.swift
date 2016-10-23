@@ -28,8 +28,11 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(sender: AnyObject) {
-        let alert:UIAlertView = UIAlertView(title: "No Registration", message: "Registration is not available at this time. Login with account 'username' and password 'password' ", delegate: self, cancelButtonTitle: "Ok")
-        
-        alert.show()
+        let alertController = UIAlertController(title: "Registration not Available", message: "Registration not available right now.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+            print("OK")
+        }
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

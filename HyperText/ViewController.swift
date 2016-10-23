@@ -28,8 +28,12 @@ class ViewController: UIViewController {
         
         if(client == nil) {
             // Error, email or password was invalid
-            let loginAlert:UIAlertView = UIAlertView(title: "Invalid Login", message: "The email or username you entered was not valid", delegate: self, cancelButtonTitle: "Ok")
-            loginAlert.show()
+            let alertController = UIAlertController(title: "Invalid Login", message: "Your email or password is not valid.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                print("OK")
+            }
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
             return
         }
         else {

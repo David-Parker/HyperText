@@ -49,8 +49,12 @@ class SettingsViewController: UIViewController {
         
         client!.setNewSettings(newSettings)
         
-        let alert:UIAlertView = UIAlertView(title: "Success!", message: "Your settings were successfully saved.", delegate: self, cancelButtonTitle: "Ok")
-        
-        alert.show()
-    }
+        let alertController = UIAlertController(title: "Success", message: "Your settings were saved.", preferredStyle: UIAlertControllerStyle.Alert)
+
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+            print("OK")
+        }
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        }
 }
