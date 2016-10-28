@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationViewController: UIViewController {
 
@@ -24,15 +25,28 @@ class RegistrationViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.pod 'Firebase/Auth'
     }
     
     @IBAction func registerButtonPressed(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Registration not Available", message: "Registration not available right now.", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
-            print("OK")
-        }
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        // TODO: associate first name/last name with user account
+        // TODO: make sure passwords are matching/of appropriate strength 
+        let email:String = emailTextField.text!
+        let password:String = passwordTextField.text!
+
+        FIRAuth.auth()?.createUserWithEmail(email, password:password, completion: {
+            (user, error) in
+            if error != nil {
+                // Error with registration.
+                let alertController = UIAlertController(title: "Registration not Available", message: "Registration not available right now.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                  print("OK")
+                }
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        })
     }
 }

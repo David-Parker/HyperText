@@ -24,9 +24,11 @@
 		3BACCB531DBAEB8E00CDBBFB /* BookReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB521DBAEB8E00CDBBFB /* BookReaderViewController.swift */; };
 		3BACCB551DBAF98200CDBBFB /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB541DBAF98200CDBBFB /* RegistrationViewController.swift */; };
 		A11788001DBC2C3F00CD78B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11787FF1DBC2C3F00CD78B2 /* GoogleService-Info.plist */; };
+		F1F28F57AE7E5697CE4E0D31 /* Pods_HyperText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5E550164D39ECC2B221349 /* Pods_HyperText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D5E550164D39ECC2B221349 /* Pods_HyperText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HyperText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BACCB221DBA834900CDBBFB /* HyperText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyperText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BACCB251DBA834900CDBBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BACCB271DBA834900CDBBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F28F57AE7E5697CE4E0D31 /* Pods_HyperText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +76,7 @@
 		3636A53A089BB7E83E23F0CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D5E550164D39ECC2B221349 /* Pods_HyperText.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Client {
     var firstName:String

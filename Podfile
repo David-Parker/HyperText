@@ -7,4 +7,5 @@ target 'HyperText' do
    
   # Pods for HyperText
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 end
