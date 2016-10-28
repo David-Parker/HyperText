@@ -7,18 +7,27 @@
 //
 
 import Foundation
+import Firebase
 
 class LoginSession {
     let hardEmail:String = "username"
     let hardPassword:String = "password"
     
-    func checkLogin(let email:String, let password:String) -> Client? {
-        if(email == hardEmail && password == hardPassword) {
-            return Client.findClientByEmail(email)
-        }
-        else {
-            return nil
-        }
+    func checkLogin(email:String, password:String) -> Client? {
+        var client:Client?
+        
+        FIRAuth.auth()?.signInWithEmail(email, password:password, completion: {
+            (user, error) in
+            if error != nil {
+                // Error with registration.
+                print("error \(email) \(password)")
+                client = nil
+            } else {
+                print("success \(email) \(password)")
+                client = Client.findClientByEmail(email)
+            }
+        })
+        return client
     }
 
 }

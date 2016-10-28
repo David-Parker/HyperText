@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet weak var emailTextBox: UITextField!
@@ -23,28 +24,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        let login:LoginSession = LoginSession()
-        let client:Client? = login.checkLogin(emailTextBox.text!, password: passwordTextBox.text!)
         
-        if(client == nil) {
-            // Error, email or password was invalid
-            let alertController = UIAlertController(title: "Invalid Login", message: "Your email or password is not valid.", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
-                print("OK")
+        FIRAuth.auth()?.signInWithEmail(emailTextBox.text!, password:passwordTextBox.text!, completion: {
+            (user, error) in
+            if error != nil {
+                // Error, email or password was invalid
+                let alertController = UIAlertController(title: "Invalid Login", message: "Your email or password is not valid.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                    print("OK")
+                }
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                return
+            } else {
+                // proceed with login, segue to main user view and pass the client object
+                let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
+                
+                let navController = UINavigationController(rootViewController: segue)
+                
+                self.presentViewController(navController, animated: true, completion: nil)
             }
-            alertController.addAction(okAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
-            return
-        }
-        else {
-            // proceed with login, segue to main user view and pass the client object
-            let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
-            
-            let navController = UINavigationController(rootViewController: segue)
-            
-            self.presentViewController(navController, animated: true, completion: nil)
-        }
-        
+        })
     }
 
     @IBAction func loginButtonFacebookPressed(sender: AnyObject) {
