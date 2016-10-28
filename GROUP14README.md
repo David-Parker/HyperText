@@ -4,7 +4,11 @@ iOS Project
 **_Implementation Contributions:_**
 
 Katherine Bruton: 30%
-* ADD CONTENT
+* Login Screen
+* Login Authentication
+* Library view controller
+* Book Reader controller
+* Code cleanup
 
 Andy Sturzu: 30%
 * ADD CONTENT
@@ -35,4 +39,4 @@ were able to get the registration screen added (at least the rudimentary verion)
 
 **_Special Instructions:_**
 
-In order to login, use the name 'username' and password 'password'.
+You can register with an email and password and login with those details.
