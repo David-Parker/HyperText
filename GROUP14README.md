@@ -42,3 +42,4 @@ were able to get the registration screen added (at least the rudimentary verion)
 
 You can register with an email and password, and login with those details.
 Cocoapod version 1.1.1
+Used Xcode 8.0
