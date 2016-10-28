@@ -30,9 +30,7 @@ David Parker: 40%
 * Settings screen
 
 **_Grading Level:_**
-* David Parker: 100%
-* Katherine Bruton: 100%
-* Andy Sturzu: 100%
+Same grade for all members: 100%
 
 **_Differences:_**
 
