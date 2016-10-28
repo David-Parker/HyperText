@@ -11,7 +11,10 @@ Katherine Bruton: 30%
 * Code cleanup
 
 Andy Sturzu: 30%
-* ADD CONTENT
+* Firebase Setup
+* Cocoapod Repo
+* Facebook App Registration
+* Firebase Facebook OAuth
 
 David Parker: 40%
 * User Interface
