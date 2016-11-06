@@ -13,22 +13,20 @@ class LoginSession {
     let hardEmail:String = "username"
     let hardPassword:String = "password"
     
-    func checkLogin(email:String, password:String) -> Client? {
-        var client:Client?
+   /* func checkLogin(email:String, password:String) -> Client? {
+        var client:Client? = nil
         
         FIRAuth.auth()?.signInWithEmail(email, password:password, completion: {
             (user, error) in
             if error != nil {
                 // Error with registration.
                 print("error \(email) \(password)")
-                client = nil
             } else {
                 print("success \(email) \(password)")
-                client = Client.findClientByEmail(email)
+                client =
             }
         })
         return client
-    }
-
+    }*/
 }
 

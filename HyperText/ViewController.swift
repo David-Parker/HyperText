@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        
+
         FIRAuth.auth()?.signInWithEmail(emailTextBox.text!, password:passwordTextBox.text!, completion: {
             (user, error) in
             if error != nil {
@@ -38,6 +38,8 @@ class ViewController: UIViewController {
                 return
             } else {
                 // proceed with login, segue to main user view and pass the client object
+                Client.findClientByEmail(self.emailTextBox.text!)
+                
                 let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
                 
                 let navController = UINavigationController(rootViewController: segue)

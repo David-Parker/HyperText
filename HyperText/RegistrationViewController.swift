@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class RegistrationViewController: UIViewController {
-
+    // var ref: FIRDatabaseReference!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -38,13 +38,15 @@ class RegistrationViewController: UIViewController {
             (user, error) in
             if error != nil {
                 // Error with registration.
-                let alertController = UIAlertController(title: "Registration not Available", message: "Registration not available right now.", preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Registration Failed", message: "Fields were not filled out or the user already exists.", preferredStyle: UIAlertControllerStyle.Alert)
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
                   print("OK")
                 }
                 alertController.addAction(okAction)
                 self.presentViewController(alertController, animated: true, completion: nil)
             } else {
+               // ref = FIRDatabase.database().reference()
+                
                 self.navigationController?.popViewControllerAnimated(true)
             }
         })
