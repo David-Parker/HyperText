@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '92A095727AD7813936836C8FC73101EC'
+               BlueprintIdentifier = '294ED6F080F944967256984510A26230'
                BlueprintName = 'Pods-HyperText'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-HyperText.framework'>
