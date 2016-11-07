@@ -13,7 +13,6 @@
 		3BACCB2E1DBA834900CDBBFB /* HyperText.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB2C1DBA834900CDBBFB /* HyperText.xcdatamodeld */; };
 		3BACCB301DBA834900CDBBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BACCB2F1DBA834900CDBBFB /* Assets.xcassets */; };
 		3BACCB331DBA834900CDBBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BACCB311DBA834900CDBBFB /* LaunchScreen.storyboard */; };
-		3BACCB3B1DBA870A00CDBBFB /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB3A1DBA870A00CDBBFB /* LoginSession.swift */; };
 		3BACCB3D1DBA896B00CDBBFB /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB3C1DBA896B00CDBBFB /* Client.swift */; };
 		3BACCB3F1DBA8E9D00CDBBFB /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB3E1DBA8E9D00CDBBFB /* LibraryViewController.swift */; };
 		3BACCB411DBABC4900CDBBFB /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB401DBABC4900CDBBFB /* LibraryController.swift */; };
@@ -37,7 +36,6 @@
 		3BACCB2F1DBA834900CDBBFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BACCB321DBA834900CDBBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BACCB341DBA834900CDBBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BACCB3A1DBA870A00CDBBFB /* LoginSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
 		3BACCB3C1DBA896B00CDBBFB /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		3BACCB3E1DBA8E9D00CDBBFB /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		3BACCB401DBABC4900CDBBFB /* LibraryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				3BACCB311DBA834900CDBBFB /* LaunchScreen.storyboard */,
 				3BACCB341DBA834900CDBBFB /* Info.plist */,
 				3BACCB2C1DBA834900CDBBFB /* HyperText.xcdatamodeld */,
-				3BACCB3A1DBA870A00CDBBFB /* LoginSession.swift */,
 				3BACCB3C1DBA896B00CDBBFB /* Client.swift */,
 				3BACCB3E1DBA8E9D00CDBBFB /* LibraryViewController.swift */,
 				3BACCB401DBABC4900CDBBFB /* LibraryController.swift */,
@@ -254,7 +251,6 @@
 				3BACCB4B1DBACBBB00CDBBFB /* Settings.swift in Sources */,
 				3BACCB551DBAF98200CDBBFB /* RegistrationViewController.swift in Sources */,
 				3BACCB511DBAD58A00CDBBFB /* BooksCollectionViewCell.swift in Sources */,
-				3BACCB3B1DBA870A00CDBBFB /* LoginSession.swift in Sources */,
 				3BACCB3D1DBA896B00CDBBFB /* Client.swift in Sources */,
 				3BACCB411DBABC4900CDBBFB /* LibraryController.swift in Sources */,
 				3BACCB3F1DBA8E9D00CDBBFB /* LibraryViewController.swift in Sources */,

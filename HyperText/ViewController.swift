@@ -36,15 +36,27 @@ class ViewController: UIViewController {
                 alertController.addAction(okAction)
                 self.presentViewController(alertController, animated: true, completion: nil)
                 return
-            } else {
-                // proceed with login, segue to main user view and pass the client object
-                Client.findClientByEmail(self.emailTextBox.text!)
-                
-                let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
-                
-                let navController = UINavigationController(rootViewController: segue)
-                
-                self.presentViewController(navController, animated: true, completion: nil)
+            }
+            else {
+                // Set the currently logged in user in memory
+                Client.setLoggedInUser(user!.uid,
+                    success: { () -> Void in
+                        let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
+                    
+                        let navController = UINavigationController(rootViewController: segue)
+                    
+                        self.presentViewController(navController, animated: true, completion: nil)
+                    },
+                    err: {() -> Void in
+                        let alertController = UIAlertController(title: "Error", message: "There was an error loading your library..", preferredStyle: UIAlertControllerStyle.Alert)
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                            print("OK")
+                        }
+                        alertController.addAction(okAction)
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        return
+                    }
+                )
             }
         })
     }
