@@ -32,12 +32,25 @@ class Client {
         // Save settings to DB
     }
     
-    // Finds the user account in the database by email (primary key) then sets the state of the logged in user
-    class func findClientByEmail(let email:String) -> Client? {
-        self.loggedInUser = Client(firstName: "John", lastName: "Doe", email: "johndoe@test.com")
-        self.loggedInUser?.settings = self.loggedInUser!.getSettingsForAccount()
+    // Asynchornous database lookup for the user's data, calls the success closure on completeion
+    class func setLoggedInUser(let uid:String, success: () -> Void, err: () -> Void) {
+        let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
         
-        return loggedInUser
+        ref.child("users").child(uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let email = value?["email"] as! String
+            let firstName = value?["firstName"] as! String
+            let lastName = value?["lastName"] as! String
+            
+            self.loggedInUser = Client(firstName: firstName, lastName: lastName, email: email)
+            self.loggedInUser?.settings = self.loggedInUser!.getSettingsForAccount()
+            success()
+
+        }) { (error) in
+            print(error.localizedDescription)
+            err()
+        }
     }
     
     class func getLoggedInUser() -> Client? {
