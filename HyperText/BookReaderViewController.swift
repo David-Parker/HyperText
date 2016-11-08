@@ -10,14 +10,16 @@ import UIKit
 
 class BookReaderViewController: UIViewController {
 
-    var book:String = ""
+    @IBOutlet weak var textField: UITextView!
+    var book:Book? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title="\(book)";
-
-        // Do any additional setup after loading the view.
+        if(book != nil) {
+            self.title="\(book!.title)"
+            self.textField.text = book!.content
+        }
     }
 
     override func didReceiveMemoryWarning() {

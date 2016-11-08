@@ -13,23 +13,22 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var booksCollection: UICollectionView!
     
     let reuseIdentifier = "cell"
-    var items:[String] = [String]()
+    var items:[Book] = [Book]()
 
     var client:Client? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Create 50 dummy books
-        for i in 1...50 {
-            items.append("\(i)")
-        }
-        
         client = Client.getLoggedInUser()
         
         if(client == nil) {
             print("Error in LibraryViewContrller, no client exists")
             return
+        }
+        
+        for book in client!.books {
+            items.append(book)
         }
 
         titleLabel.text = "\(client!.firstName) \(client!.lastName)'s Library"
@@ -46,6 +45,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! BooksCollectionViewCell
+        cell.title.text! = items[indexPath.item].title
         
         return cell
     }
@@ -58,9 +58,10 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         if let viewController: BookReaderViewController = segue.destinationViewController as? BookReaderViewController {
             let cell = sender as! BooksCollectionViewCell
             
-            let item = items[self.booksCollection.indexPathForCell(cell)!.item]
+            let book = items[self.booksCollection.indexPathForCell(cell)!.item]
+            
             viewController.title = "Book Reader"
-            viewController.book = "Book \(item)"
+            viewController.book = book
         }
     }
 }

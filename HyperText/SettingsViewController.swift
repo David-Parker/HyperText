@@ -51,10 +51,12 @@ class SettingsViewController: UIViewController {
         
         let alertController = UIAlertController(title: "Success", message: "Your settings were saved.", preferredStyle: UIAlertControllerStyle.Alert)
 
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)
+        { (result : UIAlertAction) -> Void in
             print("OK")
         }
+        
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
-        }
+    }
 }

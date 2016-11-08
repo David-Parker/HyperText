@@ -43,16 +43,27 @@ class ViewController: UIViewController {
                     success: { () -> Void in
                         // Setup the user's library before moving to the library view controller
                         let ref = FIRDatabase.database().reference()
-                        ref.child("books").child(user!.uid).setValue(["books": ["huckberry-fin.txt"]])
                         
+                        // Add books here, should lookup based on user's book collection in the database
+                        ref.child("books").child(user!.uid).setValue(["books": ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula"]])
                         
-                        
-                        
-                        let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
-                    
-                        let navController = UINavigationController(rootViewController: segue)
-                    
-                        self.presentViewController(navController, animated: true, completion: nil)
+                        Client.getLoggedInUser()?.loadUsersBooks((FIRAuth.auth()?.currentUser?.uid)!,
+                            success: { () -> Void in
+                                let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
+                                
+                                let navController = UINavigationController(rootViewController: segue)
+                                
+                                self.presentViewController(navController, animated: true, completion: nil)
+                            },
+                            err: { () -> Void in
+                                let alertController = UIAlertController(title: "Error", message: "There was an error loading your library..", preferredStyle: UIAlertControllerStyle.Alert)
+                                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                                    print("OK")
+                                }
+                                alertController.addAction(okAction)
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                                return
+                            })
                     },
                     err: {() -> Void in
                         let alertController = UIAlertController(title: "Error", message: "There was an error loading your library..", preferredStyle: UIAlertControllerStyle.Alert)
