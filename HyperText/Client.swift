@@ -15,6 +15,7 @@ class Client {
     var email:String
     var settings:Settings? = nil
     static var loggedInUser:Client? = nil
+    var books:[Book] = [Book]()
     
     init(let firstName:String, let lastName:String, let email:String) {
         self.firstName = firstName
@@ -55,5 +56,23 @@ class Client {
     
     class func getLoggedInUser() -> Client? {
         return self.loggedInUser
+    }
+    
+    class func loadUsersBooks(let uid:String, success: () -> Void, err: () -> Void) {
+        let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
+        
+        ref.child("books").child(uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let books = value?["books"] as! [String]
+            
+            let storageRef = FIRStorage.reference().child("folderName/file.jpg")
+            success()
+            
+        }) { (error) in
+            print(error.localizedDescription)
+            err()
+        }
+
     }
 }

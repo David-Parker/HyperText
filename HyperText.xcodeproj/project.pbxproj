@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B4401381DD166D1000D2B98 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4401371DD166D1000D2B98 /* Book.swift */; };
 		3BACCB261DBA834900CDBBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB251DBA834900CDBBFB /* AppDelegate.swift */; };
 		3BACCB281DBA834900CDBBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB271DBA834900CDBBFB /* ViewController.swift */; };
 		3BACCB2B1DBA834900CDBBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BACCB291DBA834900CDBBFB /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		1D5E550164D39ECC2B221349 /* Pods_HyperText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HyperText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4401371DD166D1000D2B98 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		3BACCB221DBA834900CDBBFB /* HyperText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyperText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BACCB251DBA834900CDBBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BACCB271DBA834900CDBBFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				3BACCB501DBAD58A00CDBBFB /* BooksCollectionViewCell.swift */,
 				3BACCB521DBAEB8E00CDBBFB /* BookReaderViewController.swift */,
 				3BACCB541DBAF98200CDBBFB /* RegistrationViewController.swift */,
+				3B4401371DD166D1000D2B98 /* Book.swift */,
 			);
 			path = HyperText;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				3BACCB3F1DBA8E9D00CDBBFB /* LibraryViewController.swift in Sources */,
 				3BACCB261DBA834900CDBBFB /* AppDelegate.swift in Sources */,
 				3BACCB4F1DBAD2E500CDBBFB /* BooksCollection.swift in Sources */,
+				3B4401381DD166D1000D2B98 /* Book.swift in Sources */,
 				3BACCB4D1DBACDD800CDBBFB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
