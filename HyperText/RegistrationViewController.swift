@@ -70,7 +70,7 @@ class RegistrationViewController: UIViewController {
             } else {
                 // Saves the user's info to the database
                 self.ref = FIRDatabase.database().reference()
-                self.ref.child("users").child(user!.uid).setValue(["email": email, "firstName": firstName, "lastName": lastName])
+                self.ref.child("users").child(user!.uid).setValue(["email": email, "firstName": firstName, "lastName": lastName, "speedReadingEnabled": true, "textSpeed": 50])
                 
                 self.navigationController?.popViewControllerAnimated(true)
             }
