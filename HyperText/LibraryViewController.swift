@@ -23,7 +23,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         client = Client.getLoggedInUser()
         
         if(client == nil) {
-            print("Error in LibraryViewContrller, no client exists")
+            print("Error in LibraryViewController, no client exists")
             return
         }
         

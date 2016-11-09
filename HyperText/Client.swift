@@ -31,7 +31,12 @@ class Client {
     
     func setNewSettings(let newSettings:Settings) {
         self.settings = newSettings
+        
         // Save settings to DB
+        let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        ref.child("users/\(userID!)/textSpeed").setValue(newSettings.speed)
+        ref.child("users/\(userID!)/speedReadingEnabled").setValue(newSettings.speedReading)
     }
     
     // Asynchornous database lookup for the user's data, calls the success closure on completeion
