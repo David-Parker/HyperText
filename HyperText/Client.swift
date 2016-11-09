@@ -25,18 +25,18 @@ class Client {
     }
     
     // Will need to retrieve the settings for the current user from the database
-    func getSettingsForAccount() -> Settings {
-        return Settings(speedReading: true, speed: 0.5, faceBookAccount: "johndoe@test.com")
+    class func getSettingsForAccount() -> Settings {
+        return self.loggedInUser!.settings!
     }
     
-    func setNewSettings(let newSettings:Settings) {
-        self.settings = newSettings
-        
+    class func setNewSettings(let newSettings:Settings) {
         // Save settings to DB
         let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
         let userID = FIRAuth.auth()?.currentUser?.uid
         ref.child("users/\(userID!)/textSpeed").setValue(newSettings.speed)
         ref.child("users/\(userID!)/speedReadingEnabled").setValue(newSettings.speedReading)
+        let fbAccount = self.loggedInUser?.settings!.faceBookAccount
+        self.loggedInUser?.settings = Settings(speedReading: newSettings.speedReading, speed: newSettings.speed, faceBookAccount: fbAccount!)
     }
     
     // Asynchornous database lookup for the user's data, calls the success closure on completeion
@@ -49,9 +49,12 @@ class Client {
             let email = value?["email"] as! String
             let firstName = value?["firstName"] as! String
             let lastName = value?["lastName"] as! String
-            
+            let speed = value?["textSpeed"] as! Float
+            let speedReadingEnabled = value?["speedReadingEnabled"] as! Bool
+            let fbAccount = value?["faceBookAccount"] as! String
+                
             self.loggedInUser = Client(firstName: firstName, lastName: lastName, email: email)
-            self.loggedInUser?.settings = self.loggedInUser!.getSettingsForAccount()
+            self.loggedInUser?.settings = Settings(speedReading: speedReadingEnabled, speed: speed, faceBookAccount: fbAccount)
             success()
 
         }) { (error) in

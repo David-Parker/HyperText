@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
         
         let newSettings:Settings = Settings(speedReading: speedReadingSwitch.on, speed: textSpeedSlider.value, faceBookAccount: "facebook")
         
-        client!.setNewSettings(newSettings)
+        Client.setNewSettings(newSettings)
         
         let alertController = UIAlertController(title: "Success", message: "Your settings were saved.", preferredStyle: UIAlertControllerStyle.Alert)
 
