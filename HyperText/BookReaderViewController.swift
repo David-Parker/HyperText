@@ -27,12 +27,10 @@ class BookReaderViewController: UIViewController {
     @IBAction func pausePressed(sender: AnyObject) {
         if isPaused {
             startTimer()
-            pauseButton.setTitle("Pause", forState: .Normal)
-            isPaused = false
+
         } else {
             pauseTimer()
-            pauseButton.setTitle("Resume", forState: .Normal)
-            isPaused = true
+
             
         }
     }
@@ -87,15 +85,25 @@ class BookReaderViewController: UIViewController {
     func pauseTimer() {
         speedReadTimer.invalidate()
         speedReadTimer = NSTimer()
+        
+        pauseButton.setTitle("Resume", forState: .Normal)
+        isPaused = true
     }
     
     @IBOutlet weak var mark2: UILabel!
     @IBOutlet weak var mark1: UILabel!
     func startTimer() {
-        speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1/Double(interval), target: self, selector: Selector("speedRead"), userInfo: nil, repeats: true)
+        speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1/Double(interval), target: self, selector: #selector(speedRead), userInfo: nil, repeats: true)
+        pauseButton.setTitle("Pause", forState: .Normal)
+        isPaused = false
     }
     
     func speedRead() {
+        if words.count <= wordsIndex {
+            pauseTimer()
+            return
+        }
+        
         let black = [NSForegroundColorAttributeName: UIColor.blackColor()]
         let red = [NSForegroundColorAttributeName: UIColor.redColor()]
         
@@ -104,7 +112,7 @@ class BookReaderViewController: UIViewController {
 //        print("#"+word+"#")
         
         if word.characters.count == 0 {
-            self.wordsIndex++
+            self.wordsIndex += 1
             return
         }
         
@@ -112,7 +120,7 @@ class BookReaderViewController: UIViewController {
         
         var one = word[word.startIndex..<word.startIndex.advancedBy(middleLetter)]
         let two = String(word[word.startIndex.advancedBy(middleLetter)])
-        var three = word[word.startIndex.advancedBy(middleLetter+1)..<word.endIndex]
+        let three = word[word.startIndex.advancedBy(middleLetter+1)..<word.endIndex]
         
 //        print("#"+one+"#")
 //        print("#"+two+"#")
@@ -137,7 +145,7 @@ class BookReaderViewController: UIViewController {
         
         self.label.attributedText = combination
         
-        self.wordsIndex++
+        self.wordsIndex += 1
     }
     
     func center(word:String)->Int {
