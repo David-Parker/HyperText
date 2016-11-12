@@ -66,7 +66,7 @@ class BookReaderViewController: UIViewController {
             self.label.hidden = false
             
             self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            
+            print(words)
 //            speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("speedRead"), userInfo: nil, repeats: true)
             
 

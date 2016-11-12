@@ -45,7 +45,7 @@ class ViewController: UIViewController {
                         let ref = FIRDatabase.database().reference()
                         
                         // Add books here, should lookup based on user's book collection in the database
-                        ref.child("books").child(user!.uid).setValue(["books": ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula"]])
+                        ref.child("books").child(user!.uid).setValue(["books": ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome"]])
                         
                         Client.getLoggedInUser()?.loadUsersBooks((FIRAuth.auth()?.currentUser?.uid)!,
                             success: { () -> Void in
