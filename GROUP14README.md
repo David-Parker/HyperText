@@ -7,7 +7,9 @@ Katherine Bruton: 33%
 
 
 Andy Sturzu: 33%
-
+* Refactored eBook View 
+* Added speedreading view
+* Added core speed reading functionality
 
 David Parker: 33%
 * Books database
