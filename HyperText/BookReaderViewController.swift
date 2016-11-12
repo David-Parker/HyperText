@@ -9,17 +9,150 @@
 import UIKit
 
 class BookReaderViewController: UIViewController {
-
+    
     @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var label: UILabel!
+    
     var book:Book? = nil
+    
+    var speedReading = Client.getSettingsForAccount().speedReading
+    
+    var words:[String] = []
+    var wordsIndex = 0
+    
+    var interval:Float = 0
+    
+    @IBOutlet weak var pauseButton: UIButton!
+    
+    @IBAction func pausePressed(sender: AnyObject) {
+        if isPaused {
+            startTimer()
+            pauseButton.setTitle("Pause", forState: .Normal)
+            isPaused = false
+        } else {
+            pauseTimer()
+            pauseButton.setTitle("Resume", forState: .Normal)
+            isPaused = true
+            
+        }
+    }
+    var speedReadTimer:NSTimer = NSTimer()
+    
+    var isPaused:Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(book != nil) {
+        
+        
+        if(!speedReading && book != nil) {
+            self.textField.hidden = false
+            self.label.hidden = true
+            self.pauseButton.hidden = true
+            
+            self.mark1.hidden = true
+            self.mark2.hidden = true
+            
             self.title="\(book!.title)"
             self.textField.text = book!.content
+        } else {
+            self.pauseButton.hidden = false
+            self.textField.hidden = true
+            
+            self.mark1.hidden = false
+            self.mark2.hidden = false
+            
+            self.interval = Client.getSettingsForAccount().speed
+            
+            self.label.hidden = false
+            
+            self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            
+//            speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("speedRead"), userInfo: nil, repeats: true)
+            
+
+            
+            
+            
+            
+            
         }
+        
+
+        
+        
+    }
+    
+    func pauseTimer() {
+        speedReadTimer.invalidate()
+        speedReadTimer = NSTimer()
+    }
+    
+    @IBOutlet weak var mark2: UILabel!
+    @IBOutlet weak var mark1: UILabel!
+    func startTimer() {
+        speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1/Double(interval), target: self, selector: Selector("speedRead"), userInfo: nil, repeats: true)
+    }
+    
+    func speedRead() {
+        let black = [NSForegroundColorAttributeName: UIColor.blackColor()]
+        let red = [NSForegroundColorAttributeName: UIColor.redColor()]
+        
+        let word = words[wordsIndex].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+//        print("#"+word+"#")
+        
+        if word.characters.count == 0 {
+            self.wordsIndex++
+            return
+        }
+        
+        let middleLetter:Int = center(word)
+        
+        var one = word[word.startIndex..<word.startIndex.advancedBy(middleLetter)]
+        let two = String(word[word.startIndex.advancedBy(middleLetter)])
+        var three = word[word.startIndex.advancedBy(middleLetter+1)..<word.endIndex]
+        
+//        print("#"+one+"#")
+//        print("#"+two+"#")
+//        print("#"+three+"#")
+        
+        
+            one = "".stringByPaddingToLength(4-one.characters.count,
+                                          withString: " ",
+                                          startingAtIndex: 0) + one
+        
+        let partOne = NSMutableAttributedString(string: one, attributes: black)
+        let partTwo = NSMutableAttributedString(string: two, attributes: red)
+        let partThree = NSMutableAttributedString(string: three, attributes: black)
+        
+        let combination = NSMutableAttributedString()
+        
+        combination.appendAttributedString(partOne)
+        combination.appendAttributedString(partTwo)
+        combination.appendAttributedString(partThree)
+        
+
+        
+        self.label.attributedText = combination
+        
+        self.wordsIndex++
+    }
+    
+    func center(word:String)->Int {
+        let wordLength = word.characters.count;
+        var pivot = (wordLength + 2) / 4;
+        
+        if pivot > 4 {
+            pivot = 4;
+        }
+        
+        if String(word[word.startIndex.advancedBy(pivot)]) == " " {
+            pivot -= 1;
+        }
+        return pivot;
+
     }
 
     override func didReceiveMemoryWarning() {
