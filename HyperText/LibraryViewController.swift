@@ -30,6 +30,8 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         for book in client!.books {
             items.append(book)
         }
+        
+        items.sortInPlace({$0.title < $1.title})
 
         titleLabel.text = "\(client!.firstName) \(client!.lastName)'s Library"
     }

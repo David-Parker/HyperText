@@ -59,7 +59,7 @@ class RegistrationViewController: UIViewController {
 
         FIRAuth.auth()?.createUserWithEmail(email, password:password, completion: {
             (user, error) in
-            if error != nil {
+            if (error != nil) {
                 // Error with registration.
                 let alertController = UIAlertController(title: "Registration Failed", message: "User already exists or password is not long enough.", preferredStyle: UIAlertControllerStyle.Alert)
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
@@ -67,10 +67,11 @@ class RegistrationViewController: UIViewController {
                 }
                 alertController.addAction(okAction)
                 self.presentViewController(alertController, animated: true, completion: nil)
-            } else {
+            }
+            else {
                 // Saves the user's info to the database
                 self.ref = FIRDatabase.database().reference()
-                self.ref.child("users").child(user!.uid).setValue(["email": email, "firstName": firstName, "lastName": lastName, "speedReadingEnabled": true, "textSpeed": 50, "faceBookAccount":"asdf"])
+                self.ref.child("users").child(user!.uid).setValue(["email": email, "firstName": firstName, "lastName": lastName, "speedReadingEnabled": true, "textSpeed": 0.50, "faceBookAccount":"asdf"])
                 
                 self.navigationController?.popViewControllerAnimated(true)
             }

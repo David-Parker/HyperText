@@ -14,37 +14,46 @@ class BookReaderViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     var book:Book? = nil
-    
+    var isPaused:Bool = true
     var speedReading = Client.getSettingsForAccount().speedReading
-    
     var words:[String] = []
     var wordsIndex = 0
-    
     var interval:Float = 0
+    var speedReadTimer:NSTimer = NSTimer()
     
+    @IBOutlet weak var mark2: UILabel!
+    @IBOutlet weak var mark1: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
     
     @IBAction func pausePressed(sender: AnyObject) {
-        if isPaused {
+        if (isPaused) {
             startTimer()
-
-        } else {
+        }
+        else {
             pauseTimer()
-
-            
         }
     }
-    var speedReadTimer:NSTimer = NSTimer()
-    
-    var isPaused:Bool = true
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(book == nil) {
+            print("Error in BookReaderViewController, book was nil!")
+            return
+        }
         
-        
-        if(!speedReading && book != nil) {
+        if(speedReading) {
+            self.pauseButton.hidden = false
+            self.textField.hidden = true
+            
+            self.mark1.hidden = false
+            self.mark2.hidden = false
+            
+            self.interval = Client.getSettingsForAccount().speed
+            self.label.hidden = false
+            self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        }
+        else {
             self.textField.hidden = false
             self.label.hidden = true
             self.pauseButton.hidden = true
@@ -54,32 +63,7 @@ class BookReaderViewController: UIViewController {
             
             self.title="\(book!.title)"
             self.textField.text = book!.content
-        } else {
-            self.pauseButton.hidden = false
-            self.textField.hidden = true
-            
-            self.mark1.hidden = false
-            self.mark2.hidden = false
-            
-            self.interval = Client.getSettingsForAccount().speed
-            
-            self.label.hidden = false
-            
-            self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            print(words)
-//            speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("speedRead"), userInfo: nil, repeats: true)
-            
-
-            
-            
-            
-            
-            
         }
-        
-
-        
-        
     }
     
     func pauseTimer() {
@@ -90,8 +74,6 @@ class BookReaderViewController: UIViewController {
         isPaused = true
     }
     
-    @IBOutlet weak var mark2: UILabel!
-    @IBOutlet weak var mark1: UILabel!
     func startTimer() {
         speedReadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1/Double(interval), target: self, selector: #selector(speedRead), userInfo: nil, repeats: true)
         pauseButton.setTitle("Pause", forState: .Normal)
@@ -99,19 +81,16 @@ class BookReaderViewController: UIViewController {
     }
     
     func speedRead() {
-        if words.count <= wordsIndex {
+        if (words.count <= wordsIndex) {
             pauseTimer()
             return
         }
         
         let black = [NSForegroundColorAttributeName: UIColor.blackColor()]
         let red = [NSForegroundColorAttributeName: UIColor.redColor()]
-        
         let word = words[wordsIndex].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-//        print("#"+word+"#")
-        
-        if word.characters.count == 0 {
+        if (word.characters.count == 0) {
             self.wordsIndex += 1
             return
         }
@@ -122,14 +101,7 @@ class BookReaderViewController: UIViewController {
         let two = String(word[word.startIndex.advancedBy(middleLetter)])
         let three = word[word.startIndex.advancedBy(middleLetter+1)..<word.endIndex]
         
-//        print("#"+one+"#")
-//        print("#"+two+"#")
-//        print("#"+three+"#")
-        
-        
-            one = "".stringByPaddingToLength(4-one.characters.count,
-                                          withString: " ",
-                                          startingAtIndex: 0) + one
+        one = "".stringByPaddingToLength(4-one.characters.count, withString: " ", startingAtIndex: 0) + one
         
         let partOne = NSMutableAttributedString(string: one, attributes: black)
         let partTwo = NSMutableAttributedString(string: two, attributes: red)
@@ -141,26 +113,24 @@ class BookReaderViewController: UIViewController {
         combination.appendAttributedString(partTwo)
         combination.appendAttributedString(partThree)
         
-
-        
         self.label.attributedText = combination
         
         self.wordsIndex += 1
     }
     
-    func center(word:String)->Int {
+    func center(word:String) -> Int {
         let wordLength = word.characters.count;
         var pivot = (wordLength + 2) / 4;
         
-        if pivot > 4 {
+        if (pivot > 4) {
             pivot = 4;
         }
         
-        if String(word[word.startIndex.advancedBy(pivot)]) == " " {
+        if (String(word[word.startIndex.advancedBy(pivot)]) == " ") {
             pivot -= 1;
         }
+        
         return pivot;
-
     }
 
     override func didReceiveMemoryWarning() {
