@@ -10,6 +10,7 @@ Andy Sturzu: 33%
 * Refactored eBook View 
 * Added speedreading view
 * Added core speed reading functionality
+* Added welcome book
 
 David Parker: 33%
 * Books database
