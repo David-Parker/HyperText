@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+
+        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +88,10 @@ class ViewController: UIViewController {
     
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

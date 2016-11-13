@@ -19,8 +19,11 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,5 +79,9 @@ class RegistrationViewController: UIViewController {
                 self.navigationController?.popViewControllerAnimated(true)
             }
         })
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
