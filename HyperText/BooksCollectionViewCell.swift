@@ -11,4 +11,5 @@ import UIKit
 class BooksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     // No content yet, eventually we will want an image and book data
+    @IBOutlet weak var cover: UIImageView!
 }

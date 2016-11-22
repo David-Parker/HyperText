@@ -80,24 +80,38 @@ class Client {
             
             for book in books {
                 let path:String = "Books/\(book).txt"
+                let coverPath:String = "Covers/\(book)-cover.png"
                 let bookRef = storageRef.child(path)
+                let coverRef = storageRef.child(coverPath)
                 
                 // Maximum book size is 1Mb, unless the size is increased here
                 bookRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
-                    if (error != nil) {
-                        err()
-                        // Uh-oh, an error occurred!
-                    } else {
-                        let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
-                        let bk:Book = Book(title: book, content: dataString!)
-                        self.books.append(bk)
-                        count = count + 1
-                        
-                        // Final book
-                        if(count == books.count) {
-                            success()
+                    coverRef.dataWithMaxSize(1 * 1024 * 1024) { (data2, error2) -> Void in
+                        if (error2 != nil) {
+                            err()
+                            // Uh-oh, an error occurred!
+                        }
+                        else {
+                            if (error != nil) {
+                                err()
+                                // Uh-oh, an error occurred!
+                            }
+                            else {
+                                let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
+                                let decodedImage:UIImage! = UIImage(data: data2!)
+                                
+                                let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!)
+                                self.books.append(bk)
+                                count = count + 1
+                                
+                                // Final book
+                                if(count == books.count) {
+                                    success()
+                                }
+                            }
                         }
                     }
+                    
                 }
             }
             

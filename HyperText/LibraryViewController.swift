@@ -48,6 +48,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! BooksCollectionViewCell
         cell.title.text! = items[indexPath.item].title
+        cell.cover.image = items[indexPath.item].cover
         
         return cell
     }
