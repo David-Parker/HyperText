@@ -32,8 +32,8 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         items.sortInPlace({$0.title < $1.title})
-
-        titleLabel.text = "\(client!.firstName) \(client!.lastName)'s Library"
+        
+        self.title = "\(client!.firstName) \(client!.lastName)'s Library"
     }
 
     override func didReceiveMemoryWarning() {

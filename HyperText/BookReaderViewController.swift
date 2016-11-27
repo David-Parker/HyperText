@@ -24,7 +24,24 @@ class BookReaderViewController: UIViewController {
     @IBOutlet weak var mark2: UILabel!
     @IBOutlet weak var mark1: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
     
+    @IBAction func backPressed(sender: AnyObject) {
+        if self.wordsIndex > 1 {
+            self.wordsIndex -= 2
+            pauseTimer()
+            speedRead()
+        }
+    }
+    @IBAction func forwardPressed(sender: AnyObject) {
+        print("OH OK")
+        if self.wordsIndex < words.count {
+            print("oh hello")
+            pauseTimer()
+            speedRead()
+        }
+    }
     @IBAction func pausePressed(sender: AnyObject) {
         if (isPaused) {
             startTimer()
@@ -49,6 +66,9 @@ class BookReaderViewController: UIViewController {
             self.mark1.hidden = false
             self.mark2.hidden = false
             
+            self.backButton.hidden = false
+            self.forwardButton.hidden = false
+            
             self.interval = Client.getSettingsForAccount().speed
             self.label.hidden = false
             self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -63,6 +83,9 @@ class BookReaderViewController: UIViewController {
             
             self.title="\(book!.title)"
             self.textField.text = book!.content
+            
+            self.backButton.hidden = true
+            self.forwardButton.hidden = true
         }
     }
     
@@ -70,6 +93,7 @@ class BookReaderViewController: UIViewController {
         speedReadTimer.invalidate()
         speedReadTimer = NSTimer()
         
+        print("wow")
         pauseButton.setTitle("Resume", forState: .Normal)
         isPaused = true
     }
@@ -81,6 +105,7 @@ class BookReaderViewController: UIViewController {
     }
     
     func speedRead() {
+        print("sR: ",self.wordsIndex)
         if (words.count <= wordsIndex) {
             pauseTimer()
             return
