@@ -45,10 +45,12 @@ class ViewController: UIViewController {
                 Client.setLoggedInUser(user!.uid,
                     success: { () -> Void in
                         // Setup the user's library before moving to the library view controller
-                        let ref = FIRDatabase.database().reference()
+                        
+                       /* let ref = FIRDatabase.database().reference()
                         
                         // Add books here, should lookup based on user's book collection in the database
-                        ref.child("books").child(user!.uid).setValue(["books": ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome"]])
+                        ref.child("books").child(user!.uid).setValue(["books": ["Welcome"]])
+                        */
                         
                         Client.getLoggedInUser()?.loadUsersBooks((FIRAuth.auth()?.currentUser?.uid)!,
                             success: { () -> Void in

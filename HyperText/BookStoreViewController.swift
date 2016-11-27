@@ -16,6 +16,7 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
     
     let reuseIdentifier = "cell"
     var items:[Book] = [Book]()
+    let books:[String] = ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome"]
     
     var client:Client? = nil
     
@@ -27,7 +28,6 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let storageRef = FIRStorage.storage().reference()
         
-        let books:[String] = ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome"]
         var count:Int = 0
         
         if(items.count == 0) {
@@ -51,13 +51,17 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                             }
                             else {
                                 let decodedImage:UIImage! = UIImage(data: data2!)
-                                
-                                let bk:Book = Book(title: book, content: "", cover: decodedImage!)
+                                let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
+
+                                let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!)
                                 self.items.append(bk)
                                 count = count + 1
                                 
                                 // Final book
-                                if(count == books.count) {
+                                if(count == self.books.count) {
+                                    for book in self.items {
+                                        print("books title in book store \(book.title)")
+                                    }
                                     self.booksCollection.reloadData()
                                 }
                             }
@@ -89,7 +93,49 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // handle tap events
+        var userBooks:[String] = [String]()
+        
+        for book in self.client!.books {
+            userBooks.append(book.title)
+        }
+        
+        let storageRef = FIRStorage.storage().reference()
+        let book:String = self.items[indexPath.item].title
+        print("books name when downloading \(book)")
+        let path:String = "Books/\(book).txt"
+        let coverPath:String = "Covers/\(book)-cover.png"
+        let bookRef = storageRef.child(path)
+        let coverRef = storageRef.child(coverPath)
+            
+        // Maximum book size is 1Mb, unless the size is increased here
+        bookRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+            coverRef.dataWithMaxSize(1 * 1024 * 1024) { (data2, error2) -> Void in
+                if (error2 != nil) {
+                    print("books error")
+                    // Uh-oh, an error occurred!
+                }
+                else {
+                    if (error != nil) {
+                        print("books error2")
+                        // Uh-oh, an error occurred!
+                    }
+                    else if(userBooks.contains(book)) {
+                        print("user already has the books")
+                    }
+                    else {
+                        
+                        self.client!.books.append(self.items[indexPath.item])
+                        userBooks.append(book)
+    
+                        
+                        let ref = FIRDatabase.database().reference()
+                        let userID = FIRAuth.auth()?.currentUser?.uid
+                        ref.child("books").child(userID!).setValue(["books": userBooks])
+                    }
+                }
+            }
+        }
+
     }
     
 
