@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A4C1A021DEA724B002F98E3 /* BookStoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C1A011DEA724B002F98E3 /* BookStoreCollectionViewCell.swift */; };
+		0ADEC5C11DEA6AF600076802 /* BookStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEC5C01DEA6AF600076802 /* BookStoreViewController.swift */; };
 		3B4401381DD166D1000D2B98 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4401371DD166D1000D2B98 /* Book.swift */; };
 		3BACCB261DBA834900CDBBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB251DBA834900CDBBFB /* AppDelegate.swift */; };
 		3BACCB281DBA834900CDBBFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BACCB271DBA834900CDBBFB /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A4C1A011DEA724B002F98E3 /* BookStoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		0ADEC5C01DEA6AF600076802 /* BookStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStoreViewController.swift; sourceTree = "<group>"; };
 		1D5E550164D39ECC2B221349 /* Pods_HyperText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HyperText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4401371DD166D1000D2B98 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		3BACCB221DBA834900CDBBFB /* HyperText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyperText.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,11 +116,13 @@
 				3BACCB2C1DBA834900CDBBFB /* HyperText.xcdatamodeld */,
 				3BACCB3C1DBA896B00CDBBFB /* Client.swift */,
 				3BACCB3E1DBA8E9D00CDBBFB /* LibraryViewController.swift */,
+				0ADEC5C01DEA6AF600076802 /* BookStoreViewController.swift */,
 				3BACCB401DBABC4900CDBBFB /* LibraryController.swift */,
 				3BACCB4A1DBACBBB00CDBBFB /* Settings.swift */,
 				3BACCB4C1DBACDD800CDBBFB /* SettingsViewController.swift */,
 				3BACCB4E1DBAD2E500CDBBFB /* BooksCollection.swift */,
 				3BACCB501DBAD58A00CDBBFB /* BooksCollectionViewCell.swift */,
+				0A4C1A011DEA724B002F98E3 /* BookStoreCollectionViewCell.swift */,
 				3BACCB521DBAEB8E00CDBBFB /* BookReaderViewController.swift */,
 				3BACCB541DBAF98200CDBBFB /* RegistrationViewController.swift */,
 				3B4401371DD166D1000D2B98 /* Book.swift */,
@@ -257,10 +263,12 @@
 				3BACCB3D1DBA896B00CDBBFB /* Client.swift in Sources */,
 				3BACCB411DBABC4900CDBBFB /* LibraryController.swift in Sources */,
 				3BACCB3F1DBA8E9D00CDBBFB /* LibraryViewController.swift in Sources */,
+				0ADEC5C11DEA6AF600076802 /* BookStoreViewController.swift in Sources */,
 				3BACCB261DBA834900CDBBFB /* AppDelegate.swift in Sources */,
 				3BACCB4F1DBAD2E500CDBBFB /* BooksCollection.swift in Sources */,
 				3B4401381DD166D1000D2B98 /* Book.swift in Sources */,
 				3BACCB4D1DBACDD800CDBBFB /* SettingsViewController.swift in Sources */,
+				0A4C1A021DEA724B002F98E3 /* BookStoreCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,6 +41,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("count in library view \(self.items.count)")
         return self.items.count
     }
     
