@@ -120,7 +120,9 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                         // Uh-oh, an error occurred!
                     }
                     else if(userBooks.contains(book)) {
-                        print("user already has the books")
+                        let alert = UIAlertController(title: "", message: "You already downloaded this book.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                     else {
                         
