@@ -16,7 +16,7 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
     
     let reuseIdentifier = "cell"
     var items:[Book] = [Book]()
-    let books:[String] = ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome"]
+    let books:[String] = ["Huckleberry Fin", "Ulysses", "Alice in Wonderland", "Dracula", "Welcome", "A Christmas Carol", "Tom Sawyer", "Moby Dick"]
     
     var client:Client? = nil
     
@@ -24,7 +24,6 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
         super.viewDidLoad()
         
         client = Client.getLoggedInUser()
-        
         
         let storageRef = FIRStorage.storage().reference()
         
@@ -121,7 +120,7 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                     }
                     else if(userBooks.contains(book)) {
                         let alert = UIAlertController(title: "", message: "You already downloaded this book.", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                     else {
@@ -133,21 +132,28 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                         let ref = FIRDatabase.database().reference()
                         let userID = FIRAuth.auth()?.currentUser?.uid
                         ref.child("books").child(userID!).setValue(["books": userBooks])
+                        
+                        Client.getLoggedInUser()?.loadUsersBooks((FIRAuth.auth()?.currentUser?.uid)!,
+                            success: { () -> Void in
+                                let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController
+                                                                    
+                                let navController = UINavigationController(rootViewController: segue)
+                                                                    
+                                self.presentViewController(navController, animated: true, completion: nil)
+                            },
+                            err: { () -> Void in
+                                let alertController = UIAlertController(title: "Error", message: "There was an error loading your library..", preferredStyle: UIAlertControllerStyle.Alert)
+                                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                                    print("OK")
+                                }
+                                alertController.addAction(okAction)
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                                return
+                        })
                     }
                 }
             }
         }
 
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

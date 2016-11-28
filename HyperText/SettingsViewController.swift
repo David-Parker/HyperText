@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var speedReadingSwitch: UISwitch!
@@ -35,6 +36,11 @@ class SettingsViewController: UIViewController {
     
     @IBAction func disconnectFacebook(sender: AnyObject) {
         
+    }
+    
+    @IBAction func logoutButtonPressed(sender: AnyObject) {
+        try! FIRAuth.auth()?.signOut()
+        Client.signOut()
     }
     
     @IBAction func applySettings(sender: AnyObject) {

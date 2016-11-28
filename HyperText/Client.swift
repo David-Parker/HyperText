@@ -67,7 +67,12 @@ class Client {
         return self.loggedInUser
     }
     
+    class func signOut() {
+        loggedInUser = nil
+    }
+    
     func loadUsersBooks(uid:String, success: () -> Void, err: () -> Void) {
+        self.books.removeAll()
         let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
         var count:Int = 0
         
@@ -106,6 +111,7 @@ class Client {
                                 
                                 // Final book
                                 if(count == books.count) {
+                                    self.books.sortInPlace({$0.title < $1.title})
                                     success()
                                 }
                             }

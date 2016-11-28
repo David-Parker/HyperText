@@ -44,14 +44,8 @@ class ViewController: UIViewController {
                 // Set the currently logged in user in memory
                 Client.setLoggedInUser(user!.uid,
                     success: { () -> Void in
+                        
                         // Setup the user's library before moving to the library view controller
-                        
-                       /* let ref = FIRDatabase.database().reference()
-                        
-                        // Add books here, should lookup based on user's book collection in the database
-                        ref.child("books").child(user!.uid).setValue(["books": ["Welcome"]])
-                        */
-                        
                         Client.getLoggedInUser()?.loadUsersBooks((FIRAuth.auth()?.currentUser?.uid)!,
                             success: { () -> Void in
                                 let segue:LibraryController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("library-tab") as! LibraryController

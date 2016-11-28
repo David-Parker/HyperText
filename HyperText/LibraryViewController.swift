@@ -11,6 +11,7 @@ import UIKit
 class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var booksCollection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let reuseIdentifier = "cell"
     var items:[Book] = [Book]()
@@ -20,18 +21,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        client = Client.getLoggedInUser()
-        
-        if(client == nil) {
-            print("Error in LibraryViewController, no client exists")
-            return
-        }
-        
-        for book in client!.books {
-            items.append(book)
-        }
-        
-        items.sortInPlace({$0.title < $1.title})
+        loadBooks()
         
         self.title = "\(client!.firstName) \(client!.lastName)'s Library"
     }
@@ -67,5 +57,22 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
             viewController.title = "Book Reader"
             viewController.book = book
         }
+    }
+    
+    func loadBooks() {
+        self.items.removeAll()
+        
+        client = Client.getLoggedInUser()
+        
+        if(client == nil) {
+            print("Error in LibraryViewController, no client exists")
+            return
+        }
+        
+        for book in client!.books {
+            items.append(book)
+        }
+        
+        items.sortInPlace({$0.title < $1.title})
     }
 }
