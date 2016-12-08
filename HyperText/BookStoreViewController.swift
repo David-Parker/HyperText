@@ -52,7 +52,7 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                                 let decodedImage:UIImage! = UIImage(data: data2!)
                                 let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
 
-                                let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!)
+                                let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!, index: 0)
                                 self.items.append(bk)
                                 count = count + 1
                                 
@@ -154,6 +154,5 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                 }
             }
         }
-
     }
 }

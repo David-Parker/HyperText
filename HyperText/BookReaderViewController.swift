@@ -26,6 +26,7 @@ class BookReaderViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var bookmarkButton: UIButton!
     
     @IBAction func backPressed(sender: AnyObject) {
         if self.wordsIndex > 1 {
@@ -60,6 +61,7 @@ class BookReaderViewController: UIViewController {
         }
         
         if(speedReading) {
+            self.wordsIndex = (book?.index)!
             self.pauseButton.hidden = false
             self.textField.hidden = true
             
@@ -89,11 +91,19 @@ class BookReaderViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if(book?.index != nil) {
+            self.wordsIndex = (book?.index)!
+        }
+        else {
+            self.wordsIndex = 0
+        }
+    }
+    
     func pauseTimer() {
         speedReadTimer.invalidate()
         speedReadTimer = NSTimer()
         
-        print("wow")
         pauseButton.setTitle("Resume", forState: .Normal)
         isPaused = true
     }
@@ -105,7 +115,6 @@ class BookReaderViewController: UIViewController {
     }
     
     func speedRead() {
-        print("sR: ",self.wordsIndex)
         if (words.count <= wordsIndex) {
             pauseTimer()
             return
@@ -156,6 +165,17 @@ class BookReaderViewController: UIViewController {
         }
         
         return pivot;
+    }
+    
+    @IBAction func bookmarkButtonPressed(sender: AnyObject) {
+        Client.setBookmark(book, index: wordsIndex)
+        book?.index = wordsIndex
+    }
+    
+    @IBAction func resetButtonPressed(sender: AnyObject) {
+        wordsIndex = 0
+        Client.setBookmark(book, index: wordsIndex)
+        book?.index = wordsIndex
     }
 
     override func didReceiveMemoryWarning() {

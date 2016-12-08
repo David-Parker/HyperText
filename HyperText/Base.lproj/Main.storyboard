@@ -404,30 +404,72 @@
                                     <action selector="backPressed:" destination="vfs-p7-Vk4" eventType="touchUpInside" id="LZ6-Bm-ELh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7J-WU-v6G">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="nyc-cO-G1S"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="bookmark"/>
+                                <connections>
+                                    <action selector="bookmarkButtonPressed:" destination="vfs-p7-Vk4" eventType="touchUpInside" id="lgn-tT-aDG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zua-pN-Tds">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="XhQ-Jm-kKw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookmark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOZ-F7-lql">
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7R-NG-kik">
+                                <state key="normal" title="Button" image="reset"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="vfs-p7-Vk4" eventType="touchUpInside" id="p5W-OB-lam"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.96965789626012633" blue="0.93730159252854517" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="lrr-iO-oVe" secondAttribute="trailing" constant="29" id="0XN-VO-REA"/>
+                            <constraint firstItem="e7R-NG-kik" firstAttribute="centerY" secondItem="N7J-WU-v6G" secondAttribute="centerY" id="1z1-pZ-Tem"/>
+                            <constraint firstItem="N7J-WU-v6G" firstAttribute="centerX" secondItem="lrr-iO-oVe" secondAttribute="centerX" id="43p-uL-N4E"/>
+                            <constraint firstItem="zua-pN-Tds" firstAttribute="baseline" secondItem="XOZ-F7-lql" secondAttribute="baseline" id="7qZ-ia-VLx"/>
                             <constraint firstItem="lrr-iO-oVe" firstAttribute="leading" secondItem="u4L-Dn-HDa" secondAttribute="trailing" constant="8" symbolic="YES" id="8ud-2D-q8b"/>
                             <constraint firstItem="DHR-Zl-GC4" firstAttribute="top" secondItem="b4D-aC-cnZ" secondAttribute="bottom" constant="507" id="9s5-sJ-Rby"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XOZ-F7-lql" secondAttribute="trailing" constant="31" id="DzJ-IT-n6N"/>
                             <constraint firstAttribute="bottomMargin" secondItem="mbw-YK-N7P" secondAttribute="bottom" constant="34" id="GB8-Wo-WhH"/>
+                            <constraint firstItem="lrr-iO-oVe" firstAttribute="top" secondItem="XOZ-F7-lql" secondAttribute="bottom" constant="14" id="GrB-AH-g1c"/>
                             <constraint firstItem="mbw-YK-N7P" firstAttribute="top" secondItem="b4D-aC-cnZ" secondAttribute="bottom" id="Hgk-jJ-91T"/>
+                            <constraint firstItem="zua-pN-Tds" firstAttribute="centerX" secondItem="DHR-Zl-GC4" secondAttribute="centerX" id="Ki5-SC-2CQ"/>
+                            <constraint firstItem="XOZ-F7-lql" firstAttribute="centerX" secondItem="N7J-WU-v6G" secondAttribute="centerX" id="Xfj-zp-d4y"/>
                             <constraint firstItem="mbw-YK-N7P" firstAttribute="leading" secondItem="wkK-I7-C6k" secondAttribute="leadingMargin" id="Ykc-yo-gsg"/>
                             <constraint firstItem="qrt-ft-I3M" firstAttribute="top" secondItem="DHR-Zl-GC4" secondAttribute="bottom" constant="8" symbolic="YES" id="ZVY-Rn-Qzt"/>
                             <constraint firstItem="DHR-Zl-GC4" firstAttribute="leading" secondItem="wkK-I7-C6k" secondAttribute="leadingMargin" constant="28" id="bF5-xu-52o"/>
+                            <constraint firstItem="e7R-NG-kik" firstAttribute="centerX" secondItem="zua-pN-Tds" secondAttribute="centerX" id="bfE-l6-yLO"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="baseline" secondItem="lrr-iO-oVe" secondAttribute="firstBaseline" id="ew6-hn-A3v"/>
                             <constraint firstItem="mbw-YK-N7P" firstAttribute="trailing" secondItem="wkK-I7-C6k" secondAttribute="trailingMargin" id="gGP-d1-X7i"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="centerX" secondItem="mbw-YK-N7P" secondAttribute="centerX" id="iNU-p7-dX9"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="baseline" secondItem="DHR-Zl-GC4" secondAttribute="firstBaseline" id="ik0-6v-jwk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N7J-WU-v6G" secondAttribute="trailing" constant="41" id="j0B-9H-bIg"/>
+                            <constraint firstItem="zua-pN-Tds" firstAttribute="firstBaseline" secondItem="XOZ-F7-lql" secondAttribute="firstBaseline" id="kQZ-aC-BaF"/>
                             <constraint firstItem="DHR-Zl-GC4" firstAttribute="baseline" secondItem="u4L-Dn-HDa" secondAttribute="firstBaseline" id="ldO-CS-dEa"/>
+                            <constraint firstItem="zua-pN-Tds" firstAttribute="leading" secondItem="wkK-I7-C6k" secondAttribute="leadingMargin" constant="41" id="lpI-TY-hQr"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="baseline" secondItem="lrr-iO-oVe" secondAttribute="baseline" id="m8z-iu-GyQ"/>
+                            <constraint firstItem="lrr-iO-oVe" firstAttribute="top" secondItem="N7J-WU-v6G" secondAttribute="bottom" constant="33" id="mN3-iu-eLn"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="top" secondItem="lrr-iO-oVe" secondAttribute="top" id="nat-qf-eov"/>
+                            <constraint firstItem="e7R-NG-kik" firstAttribute="leading" secondItem="wkK-I7-C6k" secondAttribute="leadingMargin" constant="43" id="q46-VE-jyg"/>
                             <constraint firstItem="u4L-Dn-HDa" firstAttribute="leading" secondItem="DHR-Zl-GC4" secondAttribute="trailing" constant="8" symbolic="YES" id="qct-aY-6Oq"/>
                             <constraint firstItem="DHR-Zl-GC4" firstAttribute="top" secondItem="u4L-Dn-HDa" secondAttribute="top" id="yJg-Wv-2DK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="DHR-Zl-GC4" id="MBg-PI-qgi"/>
+                        <outlet property="bookmarkButton" destination="N7J-WU-v6G" id="E0f-KO-9cB"/>
                         <outlet property="forwardButton" destination="lrr-iO-oVe" id="b1R-X0-YJC"/>
                         <outlet property="label" destination="ofA-e3-7Ri" id="7dg-Ta-S4e"/>
                         <outlet property="mark1" destination="LTX-lj-upb" id="mvg-fi-51j"/>
@@ -679,7 +721,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark" width="30" height="30"/>
         <image name="library" width="30" height="30"/>
+        <image name="reset" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="store" width="30" height="30"/>
     </resources>

@@ -39,6 +39,18 @@ class Client {
         self.loggedInUser?.settings = Settings(speedReading: newSettings.speedReading, speed: newSettings.speed, faceBookAccount: fbAccount!)
     }
     
+    class func setBookmark(let book:Book!, let index:Int) {
+        // Saves the new bookmark to the DB
+        if(book == nil) {
+            print("Book was null in bookmark save!")
+            return
+        }
+        
+        let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        ref.child("users/\(userID!)/bookmark/\(book.title)").setValue(index)
+    }
+    
     // Asynchornous database lookup for the user's data, calls the success closure on completeion
     class func setLoggedInUser(let uid:String, success: () -> Void, err: () -> Void) {
         let ref: FIRDatabaseReference! = FIRDatabase.database().reference()
@@ -92,32 +104,39 @@ class Client {
                 // Maximum book size is 1Mb, unless the size is increased here
                 bookRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
                     coverRef.dataWithMaxSize(1 * 1024 * 1024) { (data2, error2) -> Void in
-                        if (error2 != nil) {
-                            err()
-                            // Uh-oh, an error occurred!
-                        }
-                        else {
-                            if (error != nil) {
+                        ref.child("users").child(uid).child("bookmark").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                            if (error2 != nil) {
                                 err()
                                 // Uh-oh, an error occurred!
                             }
                             else {
-                                let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
-                                let decodedImage:UIImage! = UIImage(data: data2!)
+                                if (error != nil) {
+                                    err()
+                                    // Uh-oh, an error occurred!
+                                }
+                                else {
+                                    let dataString = String(data: data!, encoding: NSUTF8StringEncoding)
+                                    let decodedImage:UIImage! = UIImage(data: data2!)
+                                    let value = snapshot.value as? NSDictionary
+                                    var index = 0
+                                    
+                                    if(value?[book] != nil) {
+                                        index = value?[book] as! Int
+                                    }
                                 
-                                let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!)
-                                self.books.append(bk)
-                                count = count + 1
+                                    let bk:Book = Book(title: book, content: dataString!, cover: decodedImage!, index: index)
+                                    self.books.append(bk)
+                                    count = count + 1
                                 
-                                // Final book
-                                if(count == books.count) {
-                                    self.books.sortInPlace({$0.title < $1.title})
-                                    success()
+                                    // Final book
+                                    if(count == books.count) {
+                                        self.books.sortInPlace({$0.title < $1.title})
+                                        success()
+                                    }
                                 }
                             }
-                        }
+                        })
                     }
-                    
                 }
             }
             

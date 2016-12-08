@@ -13,10 +13,12 @@ class Book {
     var title:String
     var content:String
     var cover:UIImage
+    var index:Int
     
-    init(let title:String, let content:String, let cover:UIImage) {
+    init(let title:String, let content:String, let cover:UIImage, let index:Int) {
         self.title = title
         self.content = content
         self.cover = cover
+        self.index = index
     }
 }
