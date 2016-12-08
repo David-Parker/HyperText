@@ -4,10 +4,10 @@ iOS Project
 **_Implementation Contributions:_**
 
 Katherine Bruton: 33%
-* Ensured that user settings were saved appropriately
-* Updated settings view 
-* Added settings default data
-* Handled retrieving user settings and other data from DB 
+* Added book store core functionality
+* Added the ability for users to download books
+* Appropriately saved user's books when downloaded
+* Ensured the appropriate books would show in library
 
 Andy Sturzu: 33%
 * Refactored eBook View 
