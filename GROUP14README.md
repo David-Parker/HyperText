@@ -10,22 +10,22 @@ Katherine Bruton: 33%
 * Ensured the appropriate books would show in library
 
 Andy Sturzu: 33%
-* Refactored eBook View 
-* Added speedreading view
-* Added core speed reading functionality
-* Added welcome book
+* Cleaned up UI
+* Added controls for speed reading
+* Backend changes
 
 David Parker: 33%
-* Books database
-* Add books from DB to the library
-* Book class
-* Client class updates
+* Added book covers and new books.
+* Added code to have a downloaded book auto refresh the library
+* Added bookmark and reset feature to speed reading
+* Other code cleanup and backend refactors
 
 **_Grading Level:_**
 Same grade for all members: 100%
 
 **_Differences:_**
-None.
+* We were unable to get search implemented correctly, but we did reach our stretch goal of adding the book store.
+* We also added a new and more important feature: the ability to bookmark your current speed reading session. With this you can resume where you left off for any book, and also the ability to reset and go back to the beginning.
 
 **_Special Instructions:_**
 * Create a new account to access the app.
