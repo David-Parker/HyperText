@@ -24,8 +24,8 @@ David Parker: 33%
 Same grade for all members: 100%
 
 **_Differences:_**
-* We were unable to get search implemented correctly, but we did reach our stretch goal of adding the book store.
-* We also added a new and more important feature: the ability to bookmark your current speed reading session. With this you can resume where you left off for any book, and also the ability to reset and go back to the beginning.
+* We reached our stretch goal of adding the book store.
+* We also added a new and important feature: the ability to bookmark your current speed reading session. With this you can resume where you left off for any book, and also the ability to reset and go back to the beginning.
 
 **_Special Instructions:_**
 * Create a new account to access the app.

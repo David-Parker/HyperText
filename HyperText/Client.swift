@@ -69,7 +69,8 @@ class Client {
             self.loggedInUser?.settings = Settings(speedReading: speedReadingEnabled, speed: speed, faceBookAccount: fbAccount)
             success()
 
-        }) { (error) in
+        })
+        { (error) in
             print(error.localizedDescription)
             err()
         }

@@ -8,20 +8,24 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var booksCollection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     let reuseIdentifier = "cell"
     var items:[Book] = [Book]()
+    var filtered:[Book] = [Book]()
 
     var client:Client? = nil
+    
+    var searchActive = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadBooks()
+        searchBar.delegate = self
         
         self.title = "\(client!.firstName) \(client!.lastName)'s Library"
     }
@@ -31,16 +35,29 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count in library view \(self.items.count)")
-        return self.items.count
+        
+        if(searchActive) {
+            return self.filtered.count
+        }
+        else {
+           return self.items.count 
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! BooksCollectionViewCell
-        cell.title.text! = items[indexPath.item].title
-        cell.cover.image = items[indexPath.item].cover
         
+        if(searchActive) {
+            cell.title.text! = filtered[indexPath.item].title
+            cell.cover.image = filtered[indexPath.item].cover
+        }
+        else {
+            cell.title.text! = items[indexPath.item].title
+            cell.cover.image = items[indexPath.item].cover
+        }
+
         return cell
     }
     
@@ -74,5 +91,40 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         items.sortInPlace({$0.title < $1.title})
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false
+        searchBar.text = ""
+        booksCollection.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filtered = items.filter({ (book) -> Bool in
+            let tmp:NSString = book.title
+            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+            
+        })
+        
+        searchActive = true
+        
+        if(searchBar.text == "") {
+            searchActive = false
+        }
+        
+        booksCollection.reloadData()
     }
 }
