@@ -27,6 +27,9 @@ class BookReaderViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet weak var bookmarkLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var resetButtonLabel: UILabel!
     
     @IBAction func backPressed(sender: AnyObject) {
         if self.wordsIndex > 1 {
@@ -71,6 +74,12 @@ class BookReaderViewController: UIViewController {
             self.backButton.hidden = false
             self.forwardButton.hidden = false
             
+            self.bookmarkButton.hidden = false
+            self.bookmarkLabel.hidden = false
+            
+            self.resetButton.hidden = false
+            self.resetButtonLabel.hidden = false
+            
             self.interval = Client.getSettingsForAccount().speed
             self.label.hidden = false
             self.words = book!.content.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -82,6 +91,12 @@ class BookReaderViewController: UIViewController {
             
             self.mark1.hidden = true
             self.mark2.hidden = true
+            
+            self.bookmarkButton.hidden = true
+            self.bookmarkLabel.hidden = true
+            
+            self.resetButton.hidden = true
+            self.resetButtonLabel.hidden = true
             
             self.title="\(book!.title)"
             self.textField.text = book!.content
