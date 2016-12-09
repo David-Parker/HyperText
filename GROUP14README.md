@@ -17,8 +17,8 @@ Andy Sturzu: 33%
 David Parker: 33%
 * Added book covers and new books.
 * Added code to have a downloaded book auto refresh the library
-* Added bookmark and reset feature to speed reading
-* Other code cleanup and backend refactors
+* Created bookmarks and reset feature to speed reading
+* Implemented library book search
 
 **_Grading Level:_**
 Same grade for all members: 100%
