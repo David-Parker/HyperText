@@ -124,11 +124,9 @@ class BookStoreViewController: UIViewController, UICollectionViewDataSource, UIC
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                     else {
-                        
-                        self.client!.books.append(self.items[indexPath.item])
                         userBooks.append(book)
+                        self.client!.books.append(self.items[indexPath.item])
     
-                        
                         let ref = FIRDatabase.database().reference()
                         let userID = FIRAuth.auth()?.currentUser?.uid
                         ref.child("books").child(userID!).setValue(["books": userBooks])
